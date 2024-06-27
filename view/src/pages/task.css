@@ -1,64 +1,51 @@
-.app {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+body {
     font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .app {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
   }
   
   h1 {
+    text-align: center;
+    margin-bottom: 20px;
     color: #333;
   }
   
   .task-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-bottom: 20px;
   }
   
   .task-form input {
     padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #ccc;
+    margin: 10px 0;
+    border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 16px;
   }
   
   .task-form button {
-    padding: 10px 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
     border: none;
-    background-color: #28a745;
-    color: #fff;
-    cursor: pointer;
     border-radius: 4px;
-    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
   }
   
   .task-form button:hover {
-    background-color: #218838;
-  }
-  
-  .task-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .task {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f8f9fa;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .task span.completed {
-    text-decoration: line-through;
-    color: #6c757d;
+    background-color: #0056b3;
   }
   
   .task-table {
@@ -78,38 +65,33 @@
     background-color: #f4f4f4;
   }
   
+  .task-buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+  
   .task-buttons button {
-    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 5px;
   }
   
   .complete-btn {
     background-color: #4CAF50; /* Green */
     color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 5px;
   }
   
   .edit-btn {
     background-color: #FFA500; /* Orange */
     color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 5px;
   }
   
   .delete-btn {
     background-color: #f44336; /* Red */
     color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 5px;
   }
   
   .complete-btn:hover {
@@ -122,5 +104,10 @@
   
   .delete-btn:hover {
     background-color: #da190b;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: #888;
   }
   
