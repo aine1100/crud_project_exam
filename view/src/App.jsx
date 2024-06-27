@@ -1,12 +1,14 @@
 
 import './App.css'
-import UserDetailsForm from './pages/userform'
+import Task from './pages/task'
+// import UserDetailsForm from './pages/userform'
 
 function App() {
 
   return (
     <>
-    <UserDetailsForm/>
+    {/* <UserDetailsForm/> */}
+    <Task/>
         
     </>
   )
