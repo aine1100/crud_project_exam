@@ -2,14 +2,12 @@ const mongoose = require('mongoose');
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
-const Company = require("../model/generalinfo.model");
-
+const Tasks=require("./model/data.model")
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost:27017/exam")
+mongoose.connect("mongodb://localhost/exam")
     .then(() => {
         console.log("Connected to the database");
 
@@ -25,49 +23,37 @@ mongoose.connect("mongodb://localhost:27017/exam")
 
 app.post("/register", async (req, res) => {
     const {
-        title, firstname, lastname, position, company, businessArea, employees, street, additionalInformation, zipCode, place, country, code, phone, email
+        title,description,duration
     } = req.body;
 
-    if (!title || !firstname || !lastname || !position || !company || !businessArea || !employees || !street || !additionalInformation || !zipCode || !place || !country || !code || !phone || !email) {
+    if (!title|| !description || !duration) {
         return res.status(400).send("All fields are required");
     }
 
     const companyData = {
-        title,
-        firstname,
-        lastname,
-        position,
-        company,
-        businessArea,
-        employees,
-        street,
-        additionalInformation,
-        zipCode,
-        place,
-        country,
-        code,
-        phone,
-        email
+      title,
+      description,
+      duration
     };
     
     try {
-        const newCompany = new Company({ ...companyData })
+        const newCompany = new Tasks({ ...companyData })
         await newCompany.save();
-        return res.status(200).send("Company saved successfully");
+        return res.status(200).send("task saved successfully");
     } catch (err) {
         console.error("Failed to create new company", err);
-        return res.status(500).send("Failed to create new company");
+        return res.status(500).send("Failed to create new task");
     }
 });
 
 app.get("/allUser", async (req, res) => {
     try {
-        const companies = await Company.find();
+        const companies = await Tasks.find();
         res.status(200).send(companies);
-        console.log("Users fetched successfully");
+        console.log("task fetched successfully");
     } catch (err) {
         res.status(400).send(err);
-        console.log("Failed to fetch users", err);
+        console.log("Failed to fetch task", err);
     }
 });
 
@@ -76,9 +62,9 @@ app.put("/update/:id", async (req, res) => {
     const updateData = req.body;
 
     try {
-        const updatedCompany = await Company.findOneAndUpdate({ _id: id }, updateData, { new: true, runValidators: true });
+        const updatedCompany = await Tasks.findOneAndUpdate({ _id: id }, updateData, { new: true, runValidators: true });
         if (!updatedCompany) {
-            return res.status(400).send("No company info found");
+            return res.status(400).send("No task info found");
         }
         res.status(200).send(updatedCompany);
         console.log("Updated successfully");
@@ -92,7 +78,7 @@ app.delete("/delete/:id", async (req, res) => {
     const { id } = req.params;
 
     try {
-        const deletedCompany = await Company.deleteOne({ _id: id });
+        const deletedCompany = await Tasks.deleteOne({ _id: id });
         if (deletedCompany.deletedCount === 0) {
             return res.status(400).send("No company info found");
         }
